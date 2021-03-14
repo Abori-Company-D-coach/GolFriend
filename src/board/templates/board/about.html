@@ -1,0 +1,46 @@
+{% extends "board/base.html" %}
+{% load static %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>ゴルフレ！</h3>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<h1>メンバー紹介</h1>
+<h2>Tett</h2>
+<h3>自己紹介</h3>
+<p>メーカーでエンジニアとして働いています。</p>
+<hr>
+<h2>Koo</h2>
+<h3>自己紹介</h3>
+<p>メーカーでエンジニアとして働いています。</p>
+<hr>
+<h2>Taishin</h2>
+<h3>自己紹介</h3>
+<p>メーカーでエンジニアとして働いています。</p>
+<hr>
+<h2>がし</h2>
+<h3>自己紹介</h3>
+<p>メーカーでエンジニアとして働いています。</p>
+<hr>
+<h2>ばやし</h2>
+<h3>自己紹介</h3>
+<p>メーカーでエンジニアとして働いています。</p>
+
+{% comment %} <h3>実績</h3>
+<pi>{% now "Y年m月d日 H時i分"%}までに{{ num_app }}個のアプリを作りました。
+<ul>
+  <li>Creating...
+</ul>
+<h3>スキル</h3>
+<ul>
+  {% for skill in skills %}
+  <li>{{ skill }}</li>
+  {% empty %}
+  <li>スキルがありません</li>
+  {% endfor %}
+</ul> {% endcomment %}
+
+{% endblock %}

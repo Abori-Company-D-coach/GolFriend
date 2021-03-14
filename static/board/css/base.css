@@ -1,0 +1,29 @@
+/* header {
+  width: 100%;
+  text-align: center;
+  padding: 30px 4% 30px;
+  margin-bottom: 30px;
+  background-color: #EFEBDF;
+} */
+
+#wrap_content{
+  width: 90%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+#left_sidebar {
+  width:30%;
+  min-height:500px;
+  background-color:#D1ECF1; */
+  padding-top: 20px;
+  margin-right: 40px;
+}
+  
+#main_content { 
+  width:100%;
+  min-height:500px;
+  background-color:#EDF2F9;
+  padding: 20px;
+}

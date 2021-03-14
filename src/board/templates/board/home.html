@@ -1,0 +1,42 @@
+{% extends "board/base.html" %}
+{% load static%}
+
+{% block main %}
+
+<title>S3 Example Static only</title>
+
+<h1>S3 Example Static Only</h1>
+<h2>It's Working.</h2>
+<img src="{% static 'img/thumbs-up.png' %}">
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">AWS S3へアップロード</button>
+  <input type="file" name="datafile" >
+</form>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uploaded</th>
+      <th>Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for document in documents %}
+      <tr>
+        <td><a href="{{ document.upload.url }}" target="_blank">{{ document.upload.name }}</a></td>
+        <td>{{ document.uploaded_at }}</td>
+        <td>{{ document.upload.size|filesizeformat }}</td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="3">No data.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

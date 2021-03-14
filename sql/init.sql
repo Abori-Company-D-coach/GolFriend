@@ -1,0 +1,3 @@
+GRANT ALL PRIVILEGES ON sample.* TO 'user'@'%';
+
+FLUSH PRIVILEGES;

@@ -1,0 +1,15 @@
+{% extends "board/base.html" %}
+
+{% block title %}
+投稿削除
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <h1 class="my-5">投稿を削除しますか？</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">削除する</button>
+    </form>
+  </div>
+{% endblock %}

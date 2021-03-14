@@ -1,0 +1,35 @@
+{% extends "board/base.html" %}
+{% load static %}
+
+{% block main %}
+  <div class="container">
+    <h1 class="my-5">コメント {{ board.id }}</h1>
+    <div class="card mb-3">
+      <div class="card-header">
+        ID : {{ board.id }}
+      </div>
+      <div class="card-body">
+        <p class="card-text">Title : </p>
+        <h5 class="card-title">{{ board.title }}</h5>
+        <p class="card-text">Body : </p>
+        <p class="card-text">{{ board.body }}</p>
+      </div>
+      <div class="card-footer">
+        Created_at : {{ board.created_at }}<br>
+        Updated_at : {{ board.updated_at}}
+      </div>
+    </div>
+    <hr>
+    <div>
+      <p>
+        <a href="{% url 'board:update' board.id %}">
+          [ 編集 ]
+        </a>
+        <a href="{% url 'board:delete' board.id %}">
+          [ 削除 ]
+        </a>
+
+      </p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "board/base.html" %}
+{% load static %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>ゴルフレ！</h3>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<h1>あぼりカンパニーのホーム</h1>
+{% comment %} <h2>{{ username }}さんようこそ！</h2> {% endcomment %}
+
+{% comment %} トップ画像を表示(選定中) {% endcomment %}
+<img src="{% static 'board/img/!!!!!!!!!!!' %}" />
+
+{% endblock %}
