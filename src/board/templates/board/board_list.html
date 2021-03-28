@@ -14,7 +14,7 @@
     <div class="card mb-3">
       <div class="card-body">
       <h5 class="card-title">
-        <a href="{% url 'board:show' board.id %}">
+        <a href="{% url 'show' board.id %}">
           {{ board.title }}
         </a>
       </h5>
@@ -25,7 +25,7 @@
     {% include 'simple_pagination.html' %}
     <hr>
     <div>
-      <a href="{% url 'board:create_post' %}">
+      <a href="{% url 'create_post' %}">
         <p>新規投稿</p>
       </a>
     </div>

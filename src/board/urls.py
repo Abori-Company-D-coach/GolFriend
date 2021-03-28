@@ -3,8 +3,6 @@ from .views import signupfunc, loginfunc, listfunc, logoutfunc, detailfunc, good
 from .views import IndexView, AboutView, MypageView, MypageAnswersView, MypageNiceswingsView
 from .views import BoardList, ShowPostView, CreatePostView, UpdatePostView, DeletePostView
 
-app_name = "board"
-
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('about/', AboutView.as_view(), name='about'),

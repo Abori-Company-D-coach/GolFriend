@@ -156,7 +156,7 @@ class CreatePostView(CreateView):
     "Written by Tett"
     model = Board
     form_class = PostForm
-    success_url = reverse_lazy('board:board_list')
+    success_url = reverse_lazy('board_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -176,7 +176,7 @@ class UpdatePostView(UpdateView):
     "Written by Tett"
     model = Board
     form_class = PostForm
-    success_url = reverse_lazy('board:board_list')
+    success_url = reverse_lazy('board_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -195,7 +195,7 @@ class UpdatePostView(UpdateView):
 class DeletePostView(DeleteView):
     "Written by Tett"
     model = Board
-    success_url = reverse_lazy('board:board_list')
+    success_url = reverse_lazy('board_list')
 
     def delete(self, request, *args, **kwargs):
         self.object = board = self.get_object()
