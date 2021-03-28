@@ -1,9 +1,15 @@
 {% extends "board/base.html" %}
 {% load static %}
 
-{% block main %}
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>ゴルフレ！</h3>
+</div>
+{% endblock %}
+
+{% block main_content %}
   <div class="container">
-    <h1 class="my-5">コメント一覧</h1>
+    <h1 class="my-5">Posts</h1>
     {% for board in object_list %}
     <div class="card mb-3">
       <div class="card-body">
@@ -19,7 +25,7 @@
     {% include 'simple_pagination.html' %}
     <hr>
     <div>
-      <a href="{% url 'board:create' %}">
+      <a href="{% url 'board:create_post' %}">
         <p>新規投稿</p>
       </a>
     </div>

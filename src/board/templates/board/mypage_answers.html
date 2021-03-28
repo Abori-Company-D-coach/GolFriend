@@ -1,0 +1,39 @@
+{% extends 'board/base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>ゴルフレ！</h3>
+</div>
+{% endblock %}
+
+{% block main_content %}
+
+<img src="{% static 'board/img/Australlia_Building.jpg' %}" width="1000" height="500">
+
+<div class="avatar mb-3">
+    <img src="{% static 'board/img/sanji_irasutoya.png' %}" alt="" class="card-img-top rounded-circle">
+</div>
+
+<div>
+    <p>ユーザー名：{{request.user}}</p>
+    <p>登録日時：</p>
+    <p>投稿数：</p>
+</div>
+
+<li><a href="{% url 'board:mypage'%}">Posts</a></li>
+<li><a href="{% url 'board:mypage_answers'%}">Answers</a></li>
+<li><a href="{% url 'board:mypage_niceswings'%}">Nice Swings</a></li>
+
+<div class="my-answers">
+    <h2>Answers</h2>
+    <ul>
+        {% for my_answer in my_answers %}
+            <li><a href="">{{ my_answer }}</a></li>
+        {% empty %}
+            <li>まだ回答を行っていません。</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

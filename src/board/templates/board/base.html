@@ -25,11 +25,12 @@
     <div id="wrap_content">
         <div id="left_sidebar">
             <ul>
-                <li><a href="{% url 'index'%}">ホーム</a></li>
-                <li><a href="{% url 'about'%}">メンバー</a></li>
-                <li><a href="{% url 'list'%}">リスト</a></li>
-                <li><a href="{% url 'create'%}">作成</a></li>
-                <li><a href="{% url 'mypage'%}">マイページ</a></li>
+                <li><a href="{% url 'board:index'%}">ホーム</a></li>
+                <li><a href="{% url 'board:about'%}">開発メンバー</a></li>
+                <li><a href="{% url 'board:mypage'%}">マイページ</a></li>
+                <li><a href="{% url 'board:list'%}">投稿リスト(Koo作成)</a></li>
+                <li><a href="{% url 'board:create'%}">投稿(Koo作成)</a></li>
+                <li><a href="{% url 'board:board_list'%}">投稿リスト(Tett作成)</a></li>
             </ul>
             {% block left_sidebar %}{% endblock %}
         </div>

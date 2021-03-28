@@ -1,6 +1,9 @@
 from django.db import models
 
+
 class BoardModel(models.Model):
+    "Koo作成掲示板Model"
+    "Written by Koo"
     title = models.CharField(max_length=100)
     content = models.TextField()
     author = models.CharField(max_length=50)
@@ -10,14 +13,20 @@ class BoardModel(models.Model):
     readtext = models.TextField(null=True, blank=True, default='a')
 
 
-# class Board(models.Model):
-#     title = models.CharField(max_length=200)
-#     body = models.CharField(max_length=1000)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
 
-#     class Meta:
-#         db_table = "board"
+class Board(models.Model):
+    "Tett作成掲示板Model"
+    "Written by Tett"
+    title = models.CharField(max_length=200)
+    body = models.CharField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "board"
+
+
+
 
 # class Users(models.Model):
 #     name = models.CharField(max_length=255)

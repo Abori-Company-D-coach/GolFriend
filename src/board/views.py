@@ -3,17 +3,37 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from board.models import BoardModel
-from django.views.generic import TemplateView, CreateView
+from board.models import BoardModel, Board
+from .forms import PostForm
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib import messages
 from django.http.response import HttpResponse
 from django.views import generic
 from django.conf import settings
 
 
+class IndexView(TemplateView):
+    "トップページを表示"
+    "Written by Tett"
+    template_name = "board/index.html"
+
+    def get_context_data(self):
+        ctxt = super().get_context_data()
+        ctxt["username"] = "Guest User"
+        return ctxt
+
+
+
+class AboutView(TemplateView):
+    "アバウトページを表示"
+    "Written by Tett"
+    template_name = "board/about.html"
+
+
 
 class MypageView(generic.TemplateView):
-    "マイページを表示"
+    "マイページのPosts表示"
     "Written by Taishin"
     # model = BoardModel
     template_name = "board/mypage.html"
@@ -23,6 +43,18 @@ class MypageView(generic.TemplateView):
         # contextに追加(htmlで使える)
         # context[''] = 
         return context
+
+
+
+class MypageAnswersView(generic.TemplateView):
+    "マイページのAnswersを表示"
+    template_name = "board/mypage_answers.html"
+
+
+
+class MypageNiceswingsView(generic.TemplateView):
+    "マイページのNice Swingsを表示"
+    template_name = "board/mypage_niceswings.html"
 
 
 
@@ -105,23 +137,72 @@ class BoardCreate(CreateView):
 
 
 
-class IndexView(TemplateView):
-    "トップページを表示"
+"--------------Tett作成掲示板---------------------------------"
+class BoardList(ListView):
     "Written by Tett"
-    template_name = "board/index.html"
-
-    def get_context_data(self):
-        ctxt = super().get_context_data()
-        ctxt["username"] = "Guest User"
-        return ctxt
+    model = Board
+    queryset = Board.objects.order_by('-updated_at')
+    paginate_by = 10
 
 
 
-class AboutView(TemplateView):
-    "アバウトページを表示"
+class ShowPostView(DetailView):
     "Written by Tett"
-    template_name = "board/about.html"
+    model = Board
 
+
+
+class CreatePostView(CreateView):
+    "Written by Tett"
+    model = Board
+    form_class = PostForm
+    success_url = reverse_lazy('board:board_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'コメントの投稿'
+        context['form_name'] = 'コメントの投稿'
+        context['button_label'] = 'コメントを投稿する'
+        return context
+    
+    def form_valid(self, form):
+        self.object = board = form.save()
+        messages.success(self.request, '投稿が完了しました')
+        return redirect(self.get_success_url())
+
+
+
+class UpdatePostView(UpdateView):
+    "Written by Tett"
+    model = Board
+    form_class = PostForm
+    success_url = reverse_lazy('board:board_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'コメントの更新'
+        context['form_name'] = 'コメントの更新'
+        context['button_label'] = 'コメントを更新する'
+        return context
+
+    def form_valid(self, form):
+        self.object = board = form.save()
+        messages.success(self.request, '投稿を更新しました')
+        return redirect(self.get_success_url())
+
+
+
+class DeletePostView(DeleteView):
+    "Written by Tett"
+    model = Board
+    success_url = reverse_lazy('board:board_list')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = board = self.get_object()
+        board.delete()
+        messages.success(self.request, '投稿を削除しました')
+        return redirect(self.get_success_url())
+"---------------------------------------------------------------"
 
 
 # from django.shortcuts import render
@@ -171,6 +252,7 @@ class AboutView(TemplateView):
 #         context["photos"] = PhotoModel.objects.all()
 #         return context
 
+
 # class DocumentCreateView(CreateView):
 #     model = Document
 #     fields = ['upload',]
@@ -182,55 +264,4 @@ class AboutView(TemplateView):
 #         context['documents'] = documents
 #         return context
 
-# class BoardList(ListView):
-#     model = Board
-#     queryset = Board.objects.order_by('-updated_at')
-#     paginate_by = 10
 
-# class ShowCommentView(DetailView):
-#     model = Board
-
-# class CreateCommentView(CreateView):
-#     model = Board
-#     form_class = CommentForm
-#     success_url = reverse_lazy('board:index')
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['page_title'] = 'コメントの投稿'
-#         context['form_name'] = 'コメントの投稿'
-#         context['button_label'] = 'コメントを投稿する'
-#         return context
-    
-#     def form_valid(self, form):
-#         self.object = board = form.save()
-#         messages.success(self.request, '投稿が完了しました')
-#         return redirect(self.get_success_url())
-
-# class UpdateCommentView(UpdateView):
-#     model = Board
-#     form_class = CommentForm
-#     success_url = reverse_lazy('board:index')
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['page_title'] = 'コメントの更新'
-#         context['form_name'] = 'コメントの更新'
-#         context['button_label'] = 'コメントを更新する'
-#         return context
-
-#     def form_valid(self, form):
-#         self.object = board = form.save()
-#         messages.success(self.request, '投稿を更新しました')
-#         return redirect(self.get_success_url())
-
-
-# class DeleteCommentView(DeleteView):
-#     model = Board
-#     success_url = reverse_lazy('board:index')
-
-#     def delete(self, request, *args, **kwargs):
-#         self.object = board = self.get_object()
-#         board.delete()
-#         messages.success(self.request, '投稿を削除しました')
-#         return redirect(self.get_success_url())

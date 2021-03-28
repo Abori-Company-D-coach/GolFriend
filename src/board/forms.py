@@ -1,13 +1,8 @@
 from django import forms
-from .models import PhotoModel
 from .models import Board
 
-class PhotoForm(forms.ModelForm):
-    class Meta:
-        model = PhotoModel
-        fields = '__all__'
 
-class CommentForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
 
     class Meta:
         model = Board
@@ -36,3 +31,11 @@ class CommentForm(forms.ModelForm):
             msg = "本文の最大文字数は1000文字です"
             self.add_error('body', msg)
         
+
+
+# from .models import PhotoModel
+
+# class PhotoForm(forms.ModelForm):
+#     class Meta:
+#         model = PhotoModel
+#         fields = '__all__'
