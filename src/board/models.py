@@ -15,8 +15,9 @@ class BoardModel(models.Model):
 
 
 class Board(models.Model):
-    "Tett作成掲示板Model"
-    "Written by Tett"
+    """Tett作成掲示板モデル
+    Written by Tett
+    """
     title = models.CharField(max_length=200)
     body = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -26,6 +27,19 @@ class Board(models.Model):
         db_table = "board"
 
 
+
+class Profile(models.Model):
+    """プロフィール用モデル
+    Written by Tett
+    """
+    name = models.CharField('ニックネーム', max_length=100)
+    golfriend_id = models.CharField('ゴルフレID', max_length=20)
+    header_image = models.ImageField(upload_to='images', verbose_name='ヘッダー画像')
+    thumbnail = models.ImageField(upload_to='images', verbose_name='サムネイル')
+    introduction = models.TextField('自己紹介', max_length=100, null=True, blank=True)    
+    
+    def __str__(self):
+        return self.name
 
 
 # class Users(models.Model):

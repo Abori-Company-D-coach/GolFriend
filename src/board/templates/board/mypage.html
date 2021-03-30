@@ -9,16 +9,20 @@
 
 {% block main_content %}
 
-<img src="{% static 'board/img/Australlia_Building.jpg' %}" width="1000" height="500">
+<img src="{{ profile_data.header_image.url }}" width="500" height="500">
 
-<div class="avatar mb-3">
-    <img src="{% static 'board/img/sanji_irasutoya.png' %}" alt="" class="card-img-top rounded-circle">
+<div class="col-md-4">
+    <div class="card text-center px-5 py-4">
+        <div class="avatar mb-3">
+            <img src="{{ profile_data.thumbnail.url }}" alt="" class="card-img-top rounded-circle">
+        </div>
+        <h5 class="font-weight-bolder">{{ profile_data.name }}</h5>
+        <p class="mb-3 small text-center">{{ profile_data.golfriend_id|linebreaksbr }}</p>
+    </div>
 </div>
 
-<div>
-    <p>ユーザー名：{{request.user}}</p>
-    <p>登録日時：</p>
-    <p>投稿数：</p>
+<div class="col-md-8">
+    <p>{{ profile_data.introduction|linebreaksbr }}</p>
 </div>
 
 <li><a href="{% url 'mypage'%}">Posts</a></li>
@@ -37,3 +41,22 @@
 </div>
 
 {% endblock %}
+
+{% comment %} データベースからプロフィール情報抽出のためコメントアウト {% endcomment %}
+
+{% comment %}
+<img src="{% static 'board/img/Australlia_Building.jpg' %}" width="1000" height="500">
+
+<div class="avatar mb-3">
+    <img src="{% static 'board/img/sanji_irasutoya.png' %}" alt="" class="card-img-top rounded-circle">
+</div>
+
+<div>
+    <p>ユーザー名：{{request.user}}</p>
+    <p>登録日時：</p>
+    <p>投稿数：</p>
+</div>
+
+{% endblock %}
+
+ {% endcomment %}

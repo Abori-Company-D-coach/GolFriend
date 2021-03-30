@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from board.models import BoardModel, Board
+from board.models import BoardModel, Board, Profile
 from .forms import PostForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -43,6 +43,18 @@ class MypageView(generic.TemplateView):
         # contextに追加(htmlで使える)
         # context[''] = 
         return context
+
+    def get(self, request, *args, **kwargs):
+        """get関数
+
+        プロフィールデータを取得
+        """
+        profile_data = Profile.objects.all()
+        if profile_data.exists():
+            profile_data = profile_data.order_by('-id')[0]
+        return render(request, 'board/mypage.html', {
+            'profile_data': profile_data
+        })
 
 
 

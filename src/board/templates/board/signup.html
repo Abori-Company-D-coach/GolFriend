@@ -5,7 +5,7 @@
 <link href="{% static 'board/css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
-
+{% block main_content %}
 <body class="text-center">
       {{ error }}
     <main class="form-signin">
@@ -19,9 +19,8 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
       </form>
     </main>
-         
 </body>
-
+{% endblock %}
 
 {% comment %} {% extends 'base.html' %}
 {% load static %}
