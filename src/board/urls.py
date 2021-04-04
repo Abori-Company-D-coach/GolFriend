@@ -1,11 +1,12 @@
 from django.urls import path
 from .views import signupfunc, loginfunc, listfunc, logoutfunc, detailfunc, goodfunc, readfunc, BoardCreate
-from .views import IndexView, AboutView, MypageView, MypageAnswersView, MypageNiceswingsView
+from .views import IndexView, AboutView, CreateProfileView, MypageView, MypageAnswersView, MypageNiceswingsView
 from .views import BoardList, ShowPostView, CreatePostView, UpdatePostView, DeletePostView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('about/', AboutView.as_view(), name='about'),
+    path('create_profile/', CreateProfileView.as_view(), name='create_profile'),
     path('mypage/', MypageView.as_view(), name='mypage'),
     path('mypage_answers/', MypageAnswersView.as_view(), name='mypage_answers'),
     path('mypage_niceswings/', MypageNiceswingsView.as_view(), name='mypage_niceswings'),

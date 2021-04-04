@@ -18,6 +18,7 @@ class Board(models.Model):
     """Tett作成掲示板モデル
     Written by Tett
     """
+    # posted_by = models.CharField(max_length=20)
     title = models.CharField(max_length=200)
     body = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -38,8 +39,10 @@ class Profile(models.Model):
     thumbnail = models.ImageField(upload_to='images', verbose_name='サムネイル')
     introduction = models.TextField('自己紹介', max_length=100, null=True, blank=True)    
     
-    def __str__(self):
-        return self.name
+    class Meta:
+        db_table = "profile"
+    # def __str__(self):
+    #     return self.name
 
 
 # class Users(models.Model):

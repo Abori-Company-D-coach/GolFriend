@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from board.models import BoardModel, Board, Profile
-from .forms import PostForm
+from .forms import PostForm, ProfileForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -32,9 +32,10 @@ class AboutView(TemplateView):
 
 
 
+"------------Tett作成マイページ---------------"
 class MypageView(generic.TemplateView):
     "マイページのPosts表示"
-    "Written by Taishin"
+    "Written by Taishin & Tett"
     # model = BoardModel
     template_name = "board/mypage.html"
 
@@ -52,9 +53,32 @@ class MypageView(generic.TemplateView):
         profile_data = Profile.objects.all()
         if profile_data.exists():
             profile_data = profile_data.order_by('-id')[0]
+        
+        my_posts = Board.objects.order_by('-id')
         return render(request, 'board/mypage.html', {
-            'profile_data': profile_data
+            'profile_data': profile_data,
+            'my_posts': my_posts
         })
+
+
+
+class CreateProfileView(CreateView):
+    "Written by Tett"
+    model = Profile
+    form_class = ProfileForm
+    success_url = reverse_lazy('mypage')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'プロフィールの作成'
+        context['form_name'] = 'プロフィールの作成'
+        context['button_label'] = 'プロフィールを作成する'
+        return context
+    
+    def form_valid(self, form):
+        self.object = profile = form.save()
+        messages.success(self.request, 'プロフィールの作成が完了しました')
+        return redirect(self.get_success_url())
 
 
 
@@ -67,7 +91,7 @@ class MypageAnswersView(generic.TemplateView):
 class MypageNiceswingsView(generic.TemplateView):
     "マイページのNice Swingsを表示"
     template_name = "board/mypage_niceswings.html"
-
+"------------------------------------------"
 
 
 def signupfunc(request):
