@@ -107,3 +107,33 @@ body {
   max-width: 150px;
   max-height: 150px;
 }
+
+/* ---------------マイページ内タブ切り替え---------- */
+.mypage_tab_wrap {
+  width:100%; margin:80px auto;
+}
+input[type="radio"]{display:none;}
+.mypage_tab_area{font-size:0; margin:0 10px;}
+.mypage_tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#000; background:#ddd; text-align:center; font-size:20px; cursor:pointer; transition:ease 0.2s opacity;}
+.mypage_tab_area label:hover{opacity:0.5;}
+.mypage_panel_area{background:#fff;}
+.tab_panel{width:100%; padding:80px 0; display:none;}
+.tab_panel p{font-size:14px; letter-spacing:1px; text-align:left;}
+
+#tab_posts:checked ~ .mypage_tab_area .tab_posts_label{background:#fff; color:#000;}
+#tab_posts:checked ~ .mypage_panel_area #panel_posts{display:block;}
+#tab_answers:checked ~ .mypage_tab_area .tab_answers_label{background:#fff; color:#000;}
+#tab_answers:checked ~ .mypage_panel_area #panel_answers{display:block;}
+#tab_niceswings:checked ~ .mypage_tab_area .tab_niceswings_label{background:#fff; color:#000;}
+#tab_niceswings:checked ~ .mypage_panel_area #panel_niceswings{display:block;}
+/* ------------------------------------------ */
+
+.card-body {
+  background-color: #FFFFEE;
+}
+
+.footer {
+  background-color: #66CC66;
+  color: #000;
+  text-align: center;  
+}

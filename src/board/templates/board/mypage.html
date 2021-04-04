@@ -21,39 +21,75 @@
             <div class="avatar mb-3">
                 <img src="{{ profile_data.thumbnail.url }}" alt="" class="card-img-top rounded-circle">
             </div>
-            <h5 class="font-weight-bolder">{{ profile_data.name }}</h5>
-            <p class="mb-3 small text-center">{{ profile_data.golfriend_id|linebreaksbr }}</p>
+            <h5 class="font-weight-bolder">ニックネーム：{{ profile_data.name }}</h5>
+            <p class="mb-3 small text-center">ゴルフレID：{{ profile_data.golfriend_id|linebreaksbr }}</p>
         </div>
     </div>
 
     <div class="col-md-8">
+        <a>自己紹介</a>
         <p>{{ profile_data.introduction|linebreaksbr }}</p>
     </div>
 
-    <li><a href="{% url 'mypage'%}">Posts</a></li>
-    <li><a href="{% url 'mypage_answers'%}">Answers</a></li>
-    <li><a href="{% url 'mypage_niceswings'%}">Nice Swings</a></li>
+    <hr>
 
-    <div class="my-posts">
-        <h2>Posts</h2>
-        <ul>
-            {% for board in my_posts %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{% url 'show' board.id %}">
-                            {{ board.title }}
-                        </a>
-                    </h5>
-                    <p class="card-text">{{ board.body }}</p>
-                    <p class="card-text">{{ board.created_at }}</p>
+    <div class="mypage_tab_wrap">
+        <input id="tab_posts" type="radio" name="tab_btn" checked>
+        <input id="tab_answers" type="radio" name="tab_btn">
+        <input id="tab_niceswings" type="radio" name="tab_btn">
+
+        <div class="mypage_tab_area">
+            <label class="tab_posts_label" for="tab_posts">Posts</label>
+            <label class="tab_answers_label" for="tab_answers">Answers</label>
+            <label class="tab_niceswings_label" for="tab_niceswings">Nice Swings</label>
+        </div>
+
+        <div class="mypage_panel_area">
+            <div id="panel_posts" class="tab_panel">
+                <div class="my-posts">
+                    <ul>
+                        {% for board in my_posts %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{% url 'show' board.id %}">
+                                        {{ board.title }}
+                                    </a>
+                                </h5>
+                                <p class="card-text">{{ board.body }}</p>
+                                <p class="card-text">{{ board.created_at }}</p>
+                            </div>
+                        </div>    
+                        {% empty %}
+                            <li>まだ投稿がありません。</li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            </div>    
-            {% empty %}
-                <li>まだ投稿がありません。</li>
-            {% endfor %}
-        </ul>
-    </div>
+            </div>
+            <div id="panel_answers" class="tab_panel">
+                <div class="my-answers">
+                    <ul>
+                        {% for my_answer in my_answers %}
+                            <li><a href="">{{ my_answer }}</a></li>
+                        {% empty %}
+                            <p>まだ回答を行っていません。</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="panel_niceswings" class="tab_panel">
+                <div class="my-niceswings">
+                    <ul>
+                        {% for my_niceswing in my_niceswings %}
+                            <li><a href="">{{ my_niceswing }}</a></li>
+                        {% empty %}
+                            <p>まだナイススイングがありません。</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>          
 </div>
 
 {% endblock %}
