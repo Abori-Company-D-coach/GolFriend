@@ -9,8 +9,11 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Board
-        fields = ('title', 'body')
+        fields = ('user_num', 'title', 'body', 'image')
         widgets = {
+                'user_num': forms.TextInput(attrs={
+                'class': 'form-control'
+            }),
                 'title': forms.TextInput(attrs={
                 'class': 'form-control'
             }),
@@ -19,14 +22,17 @@ class PostForm(forms.ModelForm):
             }),
         }
         labels = {
+            'user_num': 'ユーザーNo',
             'title': 'タイトル',
             'body': '本文',
+            'image': '画像',
         }
 
     def clean(self):
         data = super().clean()
         title = data.get('title')
         body = data.get('body')
+        image = data.get('')
         if len(title) > 20:
             msg = "タイトルの最大文字数は20文字です"
             self.add_error('title', msg)
@@ -78,11 +84,3 @@ class ProfileForm(forms.ModelForm):
             msg = "ゴルフレIDの最大文字数は200文字です"
             self.add_error('introduction', msg)
         
-
-
-# from .models import PhotoModel
-
-# class PhotoForm(forms.ModelForm):
-#     class Meta:
-#         model = PhotoModel
-#         fields = '__all__'

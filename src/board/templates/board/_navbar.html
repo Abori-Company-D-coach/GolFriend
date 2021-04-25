@@ -13,16 +13,13 @@
                 <a href="{% url 'about' %}" class="nav-link nav-color">開発メンバー</a>
             </li>
             <li class="nav-item mr-3">
-                <a href="{% url 'mypage' %}" class="nav-link nav-color">マイページ</a>
-            </li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'users' request.user.id %}" class="nav-link nav-color">マイページ</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="nav-link nav-color">ログイン</a></li>
+            {% endif %}
             <li class="nav-item mr-3">
-                <a href="{% url 'list' %}" class="nav-link nav-color">投稿リスト(Koo作成)</a>
-            </li>
-            <li class="nav-item mr-3">
-                <a href="{% url 'create' %}" class="nav-link nav-color">投稿(Koo作成)</a>
-            </li>
-            <li class="nav-item mr-3">
-                <a href="{% url 'board_list' %}" class="nav-link nav-color">投稿リスト(Tett作成)</a>
+                <a href="{% url 'board_list' %}" class="nav-link nav-color">投稿リスト</a>
             </li>
         </ul>
     </div>

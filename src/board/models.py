@@ -1,26 +1,15 @@
 from django.db import models
 
 
-class BoardModel(models.Model):
-    "Koo作成掲示板Model"
-    "Written by Koo"
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    author = models.CharField(max_length=50)
-    snsimage = models.ImageField(upload_to='')
-    good = models.IntegerField(null=True, blank=True, default=1)
-    read = models.IntegerField(null=True, blank=True, default=1)
-    readtext = models.TextField(null=True, blank=True, default='a')
-
-
-
 class Board(models.Model):
     """Tett作成掲示板モデル
     Written by Tett
     """
     # posted_by = models.CharField(max_length=20)
+    user_num = models.CharField(max_length=10)
     title = models.CharField(max_length=200)
     body = models.CharField(max_length=1000)
+    image = models.ImageField(upload_to='images', verbose_name='投稿画像')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -77,3 +66,15 @@ class Profile(models.Model):
 # class Document(models.Model):
 #     uploaded_at = models.DateTimeField(auto_now_add=True)
 #     upload = models.FileField()
+
+"Koo作成掲示板"
+# class BoardModel(models.Model):
+#     "Koo作成掲示板Model"
+#     "Written by Koo"
+#     title = models.CharField(max_length=100)
+#     content = models.TextField()
+#     author = models.CharField(max_length=50)
+#     snsimage = models.ImageField(upload_to='')
+#     good = models.IntegerField(null=True, blank=True, default=1)
+#     read = models.IntegerField(null=True, blank=True, default=1)
+#     readtext = models.TextField(null=True, blank=True, default='a')

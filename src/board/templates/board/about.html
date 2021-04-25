@@ -1,10 +1,13 @@
 {% extends "board/base.html" %}
 {% load static %}
 
+
+{% block customcss%}
+<link rel="stylesheet" href="{% static 'board/css/about.css' %}">
+{% endblock %}
+
 {% block header %}
-<div class="alert alert-primary" role="alert">
-    <h3>ゴルフレ！</h3>
-</div>
+
 {% endblock %}
 
 {% block main_content %}
@@ -14,7 +17,7 @@
     <img src="{% static 'board/img/sanji_irasutoya.png' %}" alt="" class="card-img-top rounded-circle">
 </div>
 <h3>自己紹介</h3>
-<p>メーカーでエンジニアとして働いています。</p>
+<p>今週えみちゃんとナイケンいきました</p>
 <hr>
 <h2>Tett</h2>
 <div class="avatar mb-3">

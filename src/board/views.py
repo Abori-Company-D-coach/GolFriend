@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from board.models import BoardModel, Board, Profile
+from board.models import Board, Profile
 from .forms import PostForm, ProfileForm
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -45,20 +45,34 @@ class MypageView(generic.TemplateView):
         # context[''] = 
         return context
 
-    def get(self, request, *args, **kwargs):
-        """get関数
+    "4/17 usersに置き換えることで消去可？"
+    # def get(self, request, *args, **kwargs):
+    #     """get関数
 
-        プロフィールデータを取得
-        """
-        profile_data = Profile.objects.all()
-        if profile_data.exists():
-            profile_data = profile_data.order_by('-id')[0]
+    #     プロフィールデータを取得
+    #     """
+    #     profile_data = Profile.objects.all()
+    #     if profile_data.exists():
+    #         profile_data = profile_data.order_by('-id')[0]
         
-        my_posts = Board.objects.order_by('-id')
-        return render(request, 'board/mypage.html', {
-            'profile_data': profile_data,
-            'my_posts': my_posts
-        })
+    #     my_posts = Board.objects.order_by('-id')
+    #     return render(request, 'board/mypage.html', {
+    #         'profile_data': profile_data,
+    #         'my_posts': my_posts
+    #     })
+
+
+def users(request, pk):
+    "マイページにログインユーザを紐づける"
+    profile_data = get_object_or_404(Profile, pk=pk)
+    my_posts = Board.objects.filter(user_num = '8')
+    # my_posts = Board.objects.filter(user_num = Profile.pk)
+    # my_posts = get_object_or_404(Board, user_num = 1)
+    context = {
+        'profile_data': profile_data,
+        'my_posts': my_posts
+    }
+    return render(request, 'board/mypage.html', context)
 
 
 
@@ -80,17 +94,6 @@ class CreateProfileView(CreateView):
         messages.success(self.request, 'プロフィールの作成が完了しました')
         return redirect(self.get_success_url())
 
-
-
-class MypageAnswersView(generic.TemplateView):
-    "マイページのAnswersを表示"
-    template_name = "board/mypage_answers.html"
-
-
-
-class MypageNiceswingsView(generic.TemplateView):
-    "マイページのNice Swingsを表示"
-    template_name = "board/mypage_niceswings.html"
 "------------------------------------------"
 
 
@@ -134,43 +137,6 @@ def logoutfunc(request):
     "Written by Koo"
     logout(request)
     return redirect('login')
-
-
-def detailfunc(request, pk):
-    "Written by Koo"
-    object = get_object_or_404(BoardModel, pk=pk)
-    return render(request, 'board/detail.html', {'object':object})
-
-
-def goodfunc(request, pk):
-    "Written by Koo"
-    object = BoardModel.objects.get(pk=pk)
-    object.good += 1
-    object.save()
-    return redirect('list')
-
-
-def readfunc(request, pk):
-    "Written by Koo"
-    object = get_object_or_404(BoardModel, pk=pk)
-    username = request.user.get_username()
-    if username in object.readtext:
-        return redirect('list')
-    else:
-        object.read = object.read + 1
-        object.readtext = object.readtext + ' ' + username
-        object.save()
-        return redirect('list')
-
-
-
-class BoardCreate(CreateView):
-    "Written by Koo"
-    template_name='board/create.html'
-    model = BoardModel
-    fields = ('title', 'content', 'author', 'snsimage')
-    success_url = reverse_lazy('list')
-
 
 
 "--------------Tett作成掲示板---------------------------------"
@@ -240,64 +206,38 @@ class DeletePostView(DeleteView):
         return redirect(self.get_success_url())
 "---------------------------------------------------------------"
 
-
-# from django.shortcuts import render
-# from django.views.generic import TemplateView
-# from django.views.generic import ListView
-# from django.views.generic import DetailView
-# from django.views.generic import CreateView
-# from django.views.generic import UpdateView
-# from django.views.generic import DeleteView
-# from django.shortcuts import redirect
-# from django.contrib import messages
-# from django.urls import reverse_lazy
-# from .forms import PhotoForm
-# from .forms import CommentForm
-# from .models import PhotoModel, Document, Board
+"Koo作成掲示板"
+# def detailfunc(request, pk):
+#     "Written by Koo"
+#     object = get_object_or_404(BoardModel, pk=pk)
+#     return render(request, 'board/detail.html', {'object':object})
 
 
-# class MainView(TemplateView):
-#     template_name = "board/main.html"
+# def goodfunc(request, pk):
+#     "Written by Koo"
+#     object = BoardModel.objects.get(pk=pk)
+#     object.good += 1
+#     object.save()
+#     return redirect('list')
 
 
-#     def get_context_data(self):
-#         context = super().get_context_data()
-#         context["num_app"] = 0
-#         context["skills"] = [
-#             "python(勉強中)",
-#             "django(勉強中)",
-#             "html(勉強中)",
-#             "css(勉強中)",
-#             "AWS(勉強中)"
-#         ]
-#         return context
-
-# class AwsView(TemplateView):
-#     template_name = "board/home.html"
-
-# class Photo(CreateView):
-#     model = PhotoModel
-#     form_class = PhotoForm
-#     #template_name = 'board/aws_upload/aws_upload.html'
-#     success_url = reverse_lazy('board:index')
-#     #success_url = 'aws_upload/aws_upload.html'
-
-#     def get_context_data_photo(self, **kwargs):
-#         #最初に継承元のメソッドを呼び出す
-#         context = super(Photo, self).get_context_data_photo(**kwargs)
-#         context["photos"] = PhotoModel.objects.all()
-#         return context
+# def readfunc(request, pk):
+#     "Written by Koo"
+#     object = get_object_or_404(BoardModel, pk=pk)
+#     username = request.user.get_username()
+#     if username in object.readtext:
+#         return redirect('list')
+#     else:
+#         object.read = object.read + 1
+#         object.readtext = object.readtext + ' ' + username
+#         object.save()
+#         return redirect('list')
 
 
-# class DocumentCreateView(CreateView):
-#     model = Document
-#     fields = ['upload',]
-#     success_url = reverse_lazy('home')
 
-#     def get_context_data_document(self, **kwargs):
-#         context = super().get_context_data_document(**kwargs)
-#         documents = Document.objects.all()
-#         context['documents'] = documents
-#         return context
-
-
+# class BoardCreate(CreateView):
+#     "Written by Koo"
+#     template_name='board/create.html'
+#     model = BoardModel
+#     fields = ('title', 'content', 'author', 'snsimage')
+#     success_url = reverse_lazy('list')

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import signupfunc, loginfunc, listfunc, logoutfunc, detailfunc, goodfunc, readfunc, BoardCreate
-from .views import IndexView, AboutView, CreateProfileView, MypageView, MypageAnswersView, MypageNiceswingsView
+from .views import signupfunc, loginfunc, listfunc, logoutfunc, users
+from .views import IndexView, AboutView, CreateProfileView, MypageView
 from .views import BoardList, ShowPostView, CreatePostView, UpdatePostView, DeletePostView
 
 urlpatterns = [
@@ -8,17 +8,10 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('create_profile/', CreateProfileView.as_view(), name='create_profile'),
     path('mypage/', MypageView.as_view(), name='mypage'),
-    path('mypage_answers/', MypageAnswersView.as_view(), name='mypage_answers'),
-    path('mypage_niceswings/', MypageNiceswingsView.as_view(), name='mypage_niceswings'),
+    path('mypage/<int:pk>', users, name='users'),
     path('signup/', signupfunc, name='signup'),
     path('login/', loginfunc, name='login'),
     path('logout', logoutfunc, name='logout'),
-    # -------Koo作成掲示板--------
-    path('list/', listfunc, name='list'),
-    path('detail/<int:pk>', detailfunc, name='detail'),
-    path('good/<int:pk>', goodfunc, name='good'),
-    path('read/<int:pk>', readfunc, name='read'),
-    path('create/', BoardCreate.as_view(), name='create'),
     #----------------------------
     # Tett作成掲示板
     path('board/', BoardList.as_view(), name='board_list'),
@@ -29,20 +22,10 @@ urlpatterns = [
     # ---------------------------
 ]
 
-# from django.urls import path
 
-# from .views import IndexView, MainView, AboutView, AwsView, Photo, BoardList
-# from .views import ShowCommentView, CreateCommentView, UpdateCommentView, DeleteCommentView
-
-# app_name = "board"
-# urlpatterns = [
-#     path('', IndexView.as_view()),
-#     path('main/', MainView.as_view()),
-#     path('about/', AboutView.as_view()),
-#     path('aws/', Photo.as_view()),
-#     path('board/', BoardList.as_view(), name='index'),
-#     path('board/<int:pk>', ShowCommentView.as_view(), name='show'),
-#     path('create/', CreateCommentView.as_view(), name='create'),
-#     path('<int:pk>/update/', UpdateCommentView.as_view(), name='update'),
-#     path('<int:pk>/delete/', DeleteCommentView.as_view(), name='delete'),
-# ]
+    # # -------Koo作成掲示板--------
+    # path('list/', listfunc, name='list'),
+    # path('detail/<int:pk>', detailfunc, name='detail'),
+    # path('good/<int:pk>', goodfunc, name='good'),
+    # path('read/<int:pk>', readfunc, name='read'),
+    # path('create/', BoardCreate.as_view(), name='create'),
