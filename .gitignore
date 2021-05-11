@@ -3,3 +3,4 @@ mysql/*
 
 # django関連
 static/admin/*
+genie/*
