@@ -1,0 +1,5 @@
+# mysql配下は除外
+mysql/*
+
+# django関連
+static/admin/*

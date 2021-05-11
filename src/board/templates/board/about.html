@@ -1,7 +1,6 @@
 {% extends "board/base.html" %}
 {% load static %}
 
-
 {% block customcss%}
 <link rel="stylesheet" href="{% static 'board/css/about.css' %}">
 {% endblock %}
@@ -46,19 +45,5 @@
 </div>
 <h3>自己紹介</h3>
 <p>メーカーでエンジニアとして働いています。</p>
-
-{% comment %} <h3>実績</h3>
-<pi>{% now "Y年m月d日 H時i分"%}までに{{ num_app }}個のアプリを作りました。
-<ul>
-  <li>Creating...
-</ul>
-<h3>スキル</h3>
-<ul>
-  {% for skill in skills %}
-  <li>{{ skill }}</li>
-  {% empty %}
-  <li>スキルがありません</li>
-  {% endfor %}
-</ul> {% endcomment %}
 
 {% endblock %}

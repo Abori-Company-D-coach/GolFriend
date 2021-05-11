@@ -6,9 +6,9 @@
 GolFriend/
 ├─ mysql                #データベースコンテナ
 ├─ nginx                #Webサーバーコンテナ
-├─ python
+├─ python               #pythonコンテナ
 ├─ sql
-├─ src                  #ソースコードファイル(このディレクトリで作業が主)
+├─ src                  #ソースコードディレクトリ(pythonコンテナ内のディレクトリをローカルに表示している)
 |    └─app              #プロジェクトディレクトリ
 |         └─
 |         └─
@@ -25,11 +25,11 @@ GolFriend/
 |               └─simple_pagination.html
 |               └─board
 |                    └─_footer.html			#フッター by Tett
-|                    └─_navbar.html			#ナビゲーションバー by Tett(環境統合時にコメントアウトした)
-|                    └─about.html			#開発メンバーページ by Tett
+|                    └─_navbar.html			#ナビゲーションバー
+|                    └─about.html			#開発メンバーページ
 |                    └─base.html			#ベースファイル
 |                    └─board_confirm_delete.html	#投稿の削除確認ページ by Tett
-|                    └─board_detail.html		#投稿の詳細ページ by Tett
+|                    └─board_detail.html		#投稿の詳細ページ
 |                    └─board_form.html		#投稿のフォーム	
 |                    └─board_list.html		#投稿リストページ by Tett
 |                    └─create.html			#新規投稿 by Koo

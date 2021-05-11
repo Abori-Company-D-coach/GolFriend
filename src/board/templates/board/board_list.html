@@ -1,31 +1,35 @@
 {% extends "board/base.html" %}
 {% load static %}
 
+{% block customcss%}
+<link rel="stylesheet" href="{% static 'board/css/board.css' %}">
+{% endblock %}
+
 {% block header %}
 
 {% endblock %}
 
 {% block main_content %}
-  <div class="container">
-    <h1 class="my-5">Posts</h1>
-    {% for board in object_list %}
-    <div class="card mb-3">
-      <div class="card-body">
+<div class="container">
+  <h1 class="my-5">Posts</h1>
+  {% for board in object_list %}
+  <div class="card mb-3">
+    <div class="card-body">
       <h5 class="card-title">
         <a href="{% url 'show' board.id %}">
           {{ board.title }}
         </a>
       </h5>
       <p class="card-text">{{ board.body }}</p>
-      </div>
-    </div>
-    {% endfor %}
-    {% include 'board/simple_pagination.html' %}
-    <hr>
-    <div>
-      <a href="{% url 'create_post' %}">
-        <p>新規投稿</p>
-      </a>
     </div>
   </div>
+  {% endfor %}
+  {% include 'board/layouts/simple_pagination.html' %}
+  <hr>
+  <div>
+    <a href="{% url 'create_post' %}">
+      <p>新規投稿</p>
+    </a>
+  </div>
+</div>
 {% endblock %}

@@ -1,7 +1,12 @@
 {% extends "board/base.html" %}
+{% load static %}
 
 {% block title %}
 {{ page_title }}
+{% endblock %}
+
+{% block customcss%}
+<link rel="stylesheet" href="{% static 'board/css/board.css' %}">
 {% endblock %}
 
 {% block main_content %}

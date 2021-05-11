@@ -1,0 +1,9 @@
+{% load static %}
+
+{% block customcss%}
+<link rel="stylesheet" href="{% static 'board/css/layouts/_footer.css' %}">
+{% endblock %}
+
+<div class="footer">
+  <p>Copyright 2020-{% now "Y" %} Abori-Company.</p>
+</div>

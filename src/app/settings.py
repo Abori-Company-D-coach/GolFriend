@@ -1,14 +1,7 @@
 import os
-#import mysqlclient
-# import pymysql
-
-# connect mysql
-#pymysql.install_as_MySQLdb()
-#mysqlclient.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -31,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'board',
-    #AWS S3使用時以下のコメントアウトを解除
+    # AWS S3使用時は以下のコメントアウトを解除
     #'storages',
 ]
 
@@ -77,9 +70,6 @@ DATABASES = {
 		'PASSWORD': 'mysql',
 		'HOST': 'db',
 		'PORT': '3306',
-
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
