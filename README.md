@@ -4,44 +4,35 @@
 # ディレクトリ構成
 ```
 GolFriend/
-├─ mysql                #データベースコンテナ
-├─ nginx                #Webサーバーコンテナ
-├─ python               #pythonコンテナ
-├─ sql
-├─ src                  #ソースコードディレクトリ(pythonコンテナ内のディレクトリをローカルに表示している)
-|    └─app              #プロジェクトディレクトリ
-|         └─
-|         └─
-|         └─
-|         └─
-|         └─
-|         └─
-|         └─
-|         └─
-|         └─
-|    └─board            #掲示板アプリディレクトリ
+|─ mysql                	#データベースコンテナ
+|─ nginx                	#Webサーバーコンテナ
+|─ python               	#pythonコンテナ
+|─ sql
+|─ src                  	#ソースコードディレクトリ
+|    └─manage.py
+|    └─app             	    #プロジェクトディレクトリ
+|         └─__init__.py
+|         └─settings.py
+|         └─urls.py
+|         └─wsgi.py
+|    └─board                #掲示板アプリディレクトリ
 |         └─migrations
 |         └─templates
-|               └─simple_pagination.html
 |               └─board
-|                    └─_footer.html			#フッター by Tett
-|                    └─_navbar.html			#ナビゲーションバー
-|                    └─about.html			#開発メンバーページ
-|                    └─base.html			#ベースファイル
-|                    └─board_confirm_delete.html	#投稿の削除確認ページ by Tett
-|                    └─board_detail.html		#投稿の詳細ページ
-|                    └─board_form.html		#投稿のフォーム	
-|                    └─board_list.html		#投稿リストページ by Tett
-|                    └─create.html			#新規投稿 by Koo
-|                    └─detail.html			#投稿詳細 by Koo	
-|                    └─index.html			#トップページ by Tett
-|                    └─list.html			#投稿リスト by Koo
-|                    └─login.html			#ログイン by Koo
-|                    └─main.html			#メインページ by Tett(環境統合時にコメントアウトした)
-|                    └─mypage.html			#マイページトップ by Tett
-|                    └─mypage_answers.html		#マイページAnswers by Tett
-|                    └─mypage_niceswings.html		#マイページNice Swings by Tett
-|                    └─signup.html			#会員登録 by Koo
+|                    └─about.html			        #開発メンバーページ
+|                    └─base.html			        #ベースファイル
+|                    └─board_confirm_delete.html	#投稿の削除確認ページ
+|                    └─board_detail.html		    #投稿の詳細ページ
+|                    └─board_form.html		        #投稿のフォーム	
+|                    └─board_list.html		        #投稿リストページ	
+|                    └─index.html			        #トップページ
+|                    └─login.html			        #ログインページ
+|                    └─mypage.html			        #マイページトップ
+|                    └─signup.html			        #会員登録ページ
+|                    └─layouts
+|                    	└─_footer.html
+|                    	└─_navbar.html
+|                    	└─simple_pagination.html
 |         └─__init__.py
 |         └─admin.py
 |         └─apps.py
@@ -50,11 +41,22 @@ GolFriend/
 |         └─tests.py
 |         └─urls.py
 |         └─views.py
-|    └─manage.py
-├─ static               #静的ファイル    
-|    └─
-├─ docker-compose.yml   
-├─ README.md
+|─ static               #静的ファイル格納ディレクトリ
+|    └─board
+|         └─css	        #cssファイル格納ディレクトリ					
+|               └─layouts
+|                   └─_footer.css
+|                   └─_navbar.css
+|               └─about.css
+|               └─base.css
+|               └─index.css
+|               └─login.css
+|               └─mypage.css
+|               └─sognup.css
+|               └─board.css
+|         └─img
+|─ docker-compose.yml   
+|─ README.md
 ```
 
 
