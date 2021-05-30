@@ -4,3 +4,9 @@ mysql/*
 # django関連
 static/admin/*
 genie/*
+genie
+*.log
+*.pyc
+__pycache__/
+db-volumes/
+db.sqlite3
